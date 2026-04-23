@@ -11,6 +11,7 @@ interface Product {
   image: string;
   category: string;
   status: 'available' | 'unavailable';
+  price: number;
 }
 
 interface ProductListResponse {
@@ -59,10 +60,10 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
-      <main className="flex-grow container mx-auto px-6 py-8">
-        <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
+      <main className="flex-grow container mx-auto px-4 py-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-800">
           VIPPlus.Pro
         </h1>
         <CategoryFilter
@@ -71,23 +72,32 @@ const HomePage: React.FC = () => {
           onCategoryChange={handleCategoryChange}
         />
         {loading ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {Array.from({ length: 8 }).map((_, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <div className="aspect-square bg-gray-100 animate-pulse"></div>
-                <div className="p-4">
-                  <div className="h-6 bg-gray-200 rounded animate-pulse mb-2"></div>
-                  <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
+                <div className="aspect-square bg-gray-200 animate-pulse"></div>
+                <div className="p-3">
+                  <div className="h-5 bg-gray-200 rounded animate-pulse mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                  <div className="h-8 bg-gray-200 rounded animate-pulse"></div>
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <>
+            {products.length > 0 ? (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {products.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-gray-500 text-lg">暂无商品</p>
+              </div>
+            )}
+          </>
         )}
         <Pagination
           currentPage={currentPage}

@@ -58,14 +58,33 @@ export async function initDatabase() {
   if (count.count === 0) {
     await db.exec(`
       INSERT INTO products (name, description, price, image, category, stock, status) VALUES
+      -- Claude 分类
       ('Claude 官方礼品月卡', 'Claude 官方礼品月卡，可直接使用', 199.00, 'https://vipplus.pro/images/claude.jpg', 'Claude', 100, 'available'),
+      ('Claude max 20x 成品号（$200）', 'Claude max 20x 成品号，可直接使用', 299.00, 'https://vipplus.pro/images/claude.jpg', 'Claude', 0, 'unavailable'),
+      
+      -- ChatGPT 分类
+      ('GPT Plus月卡（自助充值）', 'GPT Plus月卡，支持自助充值', 299.00, 'https://vipplus.pro/images/chatgpt.jpg', 'ChatGPT', 0, 'unavailable'),
+      ('GPT Pro 月卡（自助充值）', 'GPT Pro 月卡，支持自助充值', 399.00, 'https://vipplus.pro/images/chatgpt.jpg', 'ChatGPT', 100, 'available'),
+      ('GPT Plus 年卡自助充值', 'GPT Plus 年卡，支持自助充值', 2599.00, 'https://vipplus.pro/images/chatgpt.jpg', 'ChatGPT', 0, 'unavailable'),
+      ('ChatGPT 稳定普号 带RT', 'ChatGPT 稳定普号，带RT功能', 49.00, 'https://vipplus.pro/images/chatgpt.jpg', 'ChatGPT', 100, 'available'),
+      ('GPT Plus/Pro 成品账号', 'GPT Plus/Pro 成品账号，可直接使用', 499.00, 'https://vipplus.pro/images/chatgpt.jpg', 'ChatGPT', 0, 'unavailable'),
+      
+      -- Gemini 分类
       ('Gemini Pro 年卡 自助充值', 'Gemini Pro 年卡，支持自助充值', 299.00, 'https://vipplus.pro/images/gemini.jpg', 'Gemini', 100, 'available'),
-      ('GPT Plus月卡（自助充值）', 'GPT Plus月卡，支持自助充值', 299.00, 'https://vipplus.pro/images/gptplus.jpg', 'ChatGPT', 0, 'unavailable'),
-      ('GPT Pro 月卡（自助充值）', 'GPT Pro 月卡，支持自助充值', 399.00, 'https://vipplus.pro/images/gptpro.jpg', 'ChatGPT', 100, 'available'),
-      ('Gemini Pro 年卡成品账号（包gcp）', 'Gemini Pro 年卡成品账号，包含GCP账号', 399.00, 'https://vipplus.pro/images/gemini-account.jpg', 'Gemini', 100, 'available'),
+      ('Gemini Pro 年卡成品账号（包gcp）', 'Gemini Pro 年卡成品账号，包含GCP账号', 399.00, 'https://vipplus.pro/images/gemini.jpg', 'Gemini', 100, 'available'),
+      
+      -- Grok 分类
       ('Grok Super 成品号', 'Grok Super 成品账号，可直接使用', 299.00, 'https://vipplus.pro/images/grok.jpg', 'Grok', 100, 'available'),
-      ('Facebook 账号', 'Facebook 账号，已验证', 99.00, 'https://vipplus.pro/images/facebook.jpg', '社交', 100, 'available'),
-      ('Threads双重验证 账户', 'Threads 双重验证账户', 149.00, 'https://vipplus.pro/images/threads.jpg', '社交', 100, 'available');
+      
+      -- 邮箱 分类
+      ('Gmail 邮箱【包GCP】', 'Gmail 邮箱，包含GCP账号', 99.00, 'https://vipplus.pro/images/email.jpg', '邮箱', 100, 'available'),
+      ('outlook 邮箱', 'outlook 邮箱，可直接使用', 49.00, 'https://vipplus.pro/images/email.jpg', '邮箱', 100, 'available'),
+      
+      -- 社交 分类
+      ('Facebook 账号', 'Facebook 账号，已验证', 99.00, 'https://vipplus.pro/images/social.jpg', '社交', 100, 'available'),
+      ('Threads双重验证 账户', 'Threads 双重验证账户，安全可靠', 149.00, 'https://vipplus.pro/images/social.jpg', '社交', 100, 'available'),
+      ('X（推特）账号', 'X（推特）账号，可直接使用', 79.00, 'https://vipplus.pro/images/social.jpg', '社交', 100, 'available'),
+      ('Instagram 账号（IG）', 'Instagram 账号，可直接使用', 89.00, 'https://vipplus.pro/images/social.jpg', '社交', 100, 'available');
     `);
   }
 
